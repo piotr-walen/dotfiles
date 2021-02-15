@@ -84,7 +84,9 @@ let _FZF_IGNORED_DIRS='!{**/node_modules/*,**/.git/*}'
 let $FZF_DEFAULT_COMMAND='rg --files --follow --no-ignore-vcs --hidden --glob "' . _FZF_IGNORED_DIRS . '"'
 
 command! -bang -nargs=* Rg
-  \ call fzf#vim#grep('rg --column --line-number --no-heading --color=always --glob "' . _FZF_IGNORED_DIRS . '" --smart-case '.shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
+  \ call fzf#vim#grep('rg --column --line-number --no-heading --color=always --glob "' 
+  \ . _FZF_IGNORED_DIRS 
+  \ . '" --smart-case '.shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
 let g:coc_status_error_sign = '✘'
 let g:coc_status_warning_sign = '⚠'
