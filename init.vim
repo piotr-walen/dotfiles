@@ -60,6 +60,9 @@ Plug 'sheerun/vim-polyglot'
 " Plug 'jparise/vim-graphql'
 call plug#end()
 
+"faster grep for gitgutter
+let g:gitgutter_grep = 'rg'
+
 "coc.nvim extensions 
 let g:coc_global_extensions = [
       \'coc-json', 
