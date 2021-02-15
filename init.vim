@@ -60,6 +60,14 @@ Plug 'sheerun/vim-polyglot'
 " Plug 'jparise/vim-graphql'
 call plug#end()
 
+"coc.nvim extensions 
+let g:coc_global_extensions = [
+      \'coc-json', 
+      \'coc-eslint',
+      \'coc-tsserver',
+      \'coc-prettier'
+      \]
+
 colorscheme nord 
 set background=dark
 set termguicolors
