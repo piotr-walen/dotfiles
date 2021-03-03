@@ -259,3 +259,6 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 " -------------- fzf config 
 let $BAT_THEME='Nord'
 
+"Copy current path and line number
+nnoremap <Leader>c :let @+=join([@%,  line(".")], ':') \| echo @+<CR>
+
