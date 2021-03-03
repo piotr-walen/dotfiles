@@ -75,6 +75,7 @@ colorscheme nord
 set background=dark
 set termguicolors
 let g:nord_uniform_diff_background = 1
+let $BAT_THEME='Nord'
 
 let g:fzf_layout = { 'window': { 'width': 1, 'height': 1 } }
 
@@ -255,9 +256,6 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
-
-" -------------- fzf config 
-let $BAT_THEME='Nord'
 
 "Copy current path and line number
 nnoremap <Leader>c :let @+=join([@%,  line(".")], ':') \| echo @+<CR>
