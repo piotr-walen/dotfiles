@@ -16,6 +16,7 @@ set clipboard=unnamed
 set updatetime=100
 set nocompatible
 set mouse=nicr
+
 " Triger `autoread` when files changes on disk
 " https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
 " https://vi.stackexchange.com/questions/13692/prevent-focusgained-autocmd-running-in-command-line-editing-mode
@@ -29,7 +30,7 @@ autocmd FileChangedShellPost *
 
 call plug#begin('~/.vim/plugged')
 "Look and feel
-Plug 'arcticicestudio/nord-vim', {'tag': 'v0.8.0' }
+Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 
 "Code completion, LSP, linting, formatting and other cool stuff
@@ -45,45 +46,76 @@ Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
-Plug 'lambdalisue/fern.vim'
 
 "Comments
 Plug 'tpope/vim-commentary'
 
 "Syntax highlighting
 Plug 'sheerun/vim-polyglot'
-" Plug 'HerringtonDarkholme/yats.vim'
-" Plug 'pangloss/vim-javascript'
-" Plug 'leafgarland/typescript-vim'
-" Plug 'peitalin/vim-jsx-typescript'
-" Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-" Plug 'jparise/vim-graphql'
 call plug#end()
-
-"faster grep for gitgutter
-let g:gitgutter_grep = 'rg'
 
 "coc.nvim extensions 
 let g:coc_global_extensions = [
       \'coc-json', 
       \'coc-eslint',
       \'coc-tsserver',
-      \'coc-prettier'
+      \'coc-prettier',
+      \'coc-explorer'
       \]
 
-colorscheme nord 
+"faster grep for gitgutter
+let g:gitgutter_grep = 'rg'
+
+colorscheme gruvbox 
 set background=dark
-set termguicolors
-let g:nord_uniform_diff_background = 1
-let $BAT_THEME='Nord'
+let g:gruvbox_contrast_dark='hard'
+" set termguicolors
 
-let g:fzf_layout = { 'window': { 'width': 1, 'height': 1 } }
 
-nmap <C-e> :Fern . -reveal=% <CR>
+ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
+
+" nmap <C-e> :NnnPicker %:p:h <CR>
+
+
+let g:coc_explorer_global_presets = {
+\   'floating': {
+\     'position': 'floating',
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'floatingTop': {
+\     'position': 'floating',
+\     'floating-position': 'center-top',
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'floatingLeftside': {
+\     'position': 'floating',
+\     'floating-position': 'left-center',
+\     'floating-width': 50,
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'floatingRightside': {
+\     'position': 'floating',
+\     'floating-position': 'right-center',
+\     'floating-width': 50,
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\ }
+
+nmap <C-e> :CocCommand explorer --preset floating<CR>
 nmap <C-p> :Files<CR>
 nmap <C-f> :Rg<CR>
 nmap <C-b> :Buffers<CR>
 
+nmap <F5> :Eslint<CR>
+nmap <F9> :GFiles?<CR>
+
+nnoremap <leader>d "0d
+xnoremap <leader>d "0d
+nnoremap <leader>p "0p
+xnoremap <leader>p "0p
+
+
+let g:fzf_preview_window = []
 let _FZF_IGNORED_DIRS='!{**/node_modules/*,**/.git/*}'
 let $FZF_DEFAULT_COMMAND='rg --files --follow --no-ignore-vcs --hidden --ignore-case --glob "' . _FZF_IGNORED_DIRS . '"'
 
